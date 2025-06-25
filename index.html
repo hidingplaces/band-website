@@ -6,36 +6,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hiding Places</title>
+
+<style>
+#cc-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 280px;
+  background: white;
+  color: black;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 10px 12px;
+  border-radius: 0;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  z-index: 9999;
+}
+#cc-banner button {
+  background: none;
+  color: #0645AD; /* standard blue link color */
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 0;
+  margin-top: 6px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+@media (max-width: 500px) {
+  #cc-banner {
+    bottom: 10px;
+    right: 10px;
+    max-width: 90%;
+    font-size: 13px;
+  }
+  #cc-banner button {
+    font-size: 13px;
+  }
+}
+</style>
+
+
+
 </head>
 
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1922039791903298');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1922039791903298&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJFH7FDV68"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KJFH7FDV68');
-</script>
 
 
 <body>
@@ -51,5 +68,99 @@ src="https://www.facebook.com/tr?id=1922039791903298&ev=PageView&noscript=1"
 <br><a href="https://hidingplaces.atabook.org/">Guestbook</a></br>
 <br><a href="mailto:elijah@mtnlaurelrecordingco.com/">Contact</a> (management)</br>
 <br><img src="hiding-places-portrait-2025.webp" type=”image/webp” style="max-width:100%;height:auto;"></br>
+
+
+<script>
+// Define regions that require consent (GDPR, UK, CA)
+const restrictedCountries = [
+  'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT',
+  'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','UK','CA'
+];
+
+// US states that require cookie notice but not consent
+const noticeOnlyStates = ['US-CA', 'US-VA', 'US-CO', 'US-CT', 'US-UT'];
+
+fetch('https://ipapi.co/json/')
+  .then(res => res.json())
+  .then(data => {
+    const country = data.country_code;
+    const region = `US-${data.region_code}`;
+    const needsConsent = restrictedCountries.includes(country);
+    const needsNotice = country === 'US' && noticeOnlyStates.includes(region);
+
+    if (needsConsent) {
+      showCookieBanner(true);  // block tracking until accepted
+    } else if (needsNotice) {
+      showCookieBanner(false); // show notice, allow tracking
+    } else {
+      loadTrackingScripts();   // no banner, track immediately
+    }
+  })
+  .catch(() => {
+    console.warn('Geo lookup failed — tracking enabled by default');
+    loadTrackingScripts();
+  });
+
+function showCookieBanner(shouldDelayTracking) {
+  const banner = document.createElement('div');
+  banner.id = 'cc-banner';
+  banner.innerHTML = `
+    <div>
+      This site uses cookies to analyze traffic.
+      <br>
+      <button id="cc-accept">Accept</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  const accept = () => {
+    localStorage.setItem('cookieConsent', 'true');
+    document.getElementById('cc-banner').remove();
+    if (shouldDelayTracking) loadTrackingScripts();
+  };
+
+  document.getElementById('cc-accept').addEventListener('click', accept);
+
+  // If already accepted, skip banner
+  if (localStorage.getItem('cookieConsent') === 'true') {
+    banner.remove();
+    if (shouldDelayTracking) loadTrackingScripts();
+  } else if (!shouldDelayTracking) {
+    loadTrackingScripts(); // track immediately in notice-only regions
+  }
+}
+
+function loadTrackingScripts() {
+  // GA4
+  var ga = document.createElement('script');
+  ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-KJFH7FDV68';
+  ga.async = true;
+  document.head.appendChild(ga);
+  ga.onload = function () {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KJFH7FDV68');
+  };
+
+  // Meta Pixel
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1922039791903298');
+  fbq('track', 'PageView');
+
+  const noScript = document.createElement('noscript');
+  noScript.innerHTML = '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1922039791903298&ev=PageView&noscript=1" />';
+  document.body.appendChild(noScript);
+}
+</script>
+
+
 
 </body>
