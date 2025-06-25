@@ -1,13 +1,89 @@
 <!DOCTYPE html>
 <html lang ="en">
-
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hiding Places</title>
-
 <style>
+/* Header layout */
+.top-banner {
+  display: flex;
+  align-items: center; /* fix vertical alignment on desktop */
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.top-left img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Nav container */
+.top-right {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 20px;
+  flex-wrap: wrap;
+}
+
+/* Link style */
+.top-right a {
+  color: blue;
+  text-decoration: underline;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+/* Contact + (management) block */
+.contact-combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 10px; /* match other links */
+}
+.contact-combo a {
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0;
+}
+.contact-combo span {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .top-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .top-right {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .top-right a {
+    display: block;
+    font-size: 14px;
+  }
+
+  .contact-combo {
+    display: inline-flex;
+  }
+}
+
+/* Cookie banner (unchanged) */
 #cc-banner {
   position: fixed;
   bottom: 20px;
@@ -23,9 +99,10 @@
   box-shadow: none;
   z-index: 9999;
 }
+
 #cc-banner button {
   background: none;
-  color: #0645AD; /* standard blue link color */
+  color: #0645AD;
   border: none;
   font-size: 14px;
   font-family: inherit;
@@ -34,6 +111,7 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
 @media (max-width: 500px) {
   #cc-banner {
     bottom: 10px;
@@ -41,6 +119,7 @@
     max-width: 90%;
     font-size: 13px;
   }
+
   #cc-banner button {
     font-size: 13px;
   }
@@ -49,118 +128,122 @@
 
 
 
+
+
+
+
+
+
 </head>
-
-
-
-
-
 <body>
-<a href="https://hidingplaces.band">
-  <img src="hiding-places-logo-2025.webp" alt="Hiding Places Logo" type="image/webp">
-</a>
-<br>
-<br><a href="https://hidingplaces.band">Home</a></br>
-<br><a href="shows/">Shows</a></br>
-<br><a href="music/">Music</a></br>
-<br><a href="merch/">Merch</a></br>
-<br><a href="https://www.youtube.com/@hidingplaces3150/videos">Videos</a></br>
-<br><a href="https://hidingplaces.atabook.org/">Guestbook</a></br>
-<br><a href="mailto:elijah@mtnlaurelrecordingco.com/">Contact</a> (management)</br>
-<br><img src="hiding-places-portrait-2025.webp" type=”image/webp” style="max-width:100%;height:auto;"></br>
-
-
-<script>
-// Define regions that require consent (GDPR, UK, CA)
-const restrictedCountries = [
-  'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT',
-  'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','UK','CA'
-];
-
-// US states that require cookie notice but not consent
-const noticeOnlyStates = ['US-CA', 'US-VA', 'US-CO', 'US-CT', 'US-UT'];
-
-fetch('https://ipapi.co/json/')
-  .then(res => res.json())
-  .then(data => {
-    const country = data.country_code;
-    const region = `US-${data.region_code}`;
-    const needsConsent = restrictedCountries.includes(country);
-    const needsNotice = country === 'US' && noticeOnlyStates.includes(region);
-
-    if (needsConsent) {
-      showCookieBanner(true);  // block tracking until accepted
-    } else if (needsNotice) {
-      showCookieBanner(false); // show notice, allow tracking
-    } else {
-      loadTrackingScripts();   // no banner, track immediately
-    }
-  })
-  .catch(() => {
-    console.warn('Geo lookup failed — tracking enabled by default');
-    loadTrackingScripts();
-  });
-
-function showCookieBanner(shouldDelayTracking) {
-  const banner = document.createElement('div');
-  banner.id = 'cc-banner';
-  banner.innerHTML = `
-    <div>
-      This site uses cookies to analyze traffic.
-      <br>
-      <button id="cc-accept">Accept</button>
+  <div class="top-banner">
+    <div class="top-left">
+      <a href="https://hidingplaces.band">
+        <img src="hiding-places-logo-2025.webp" alt="Hiding Places Logo" type="image/webp">
+      </a>
     </div>
-  `;
-  document.body.appendChild(banner);
+    <div class="top-right">
+      <a href="https://hidingplaces.band">Home</a>
+      <a href="shows/">Shows</a>
+      <a href="music/">Music</a>
+      <a href="merch/">Merch</a>
+      <a href="https://www.youtube.com/@hidingplaces3150/videos">Videos</a>
+      <a href="https://hidingplaces.atabook.org/">Guestbook</a>
+      <span class="contact-combo">
+    <a href="mailto:elijah@mtnlaurelrecordingco.com/">Contact</a>
+    <span>(management)</span>
+    </span>
+    </div>
+  </div>
 
-  const accept = () => {
-    localStorage.setItem('cookieConsent', 'true');
-    document.getElementById('cc-banner').remove();
-    if (shouldDelayTracking) loadTrackingScripts();
-  };
-
-  document.getElementById('cc-accept').addEventListener('click', accept);
-
-  // If already accepted, skip banner
-  if (localStorage.getItem('cookieConsent') === 'true') {
-    banner.remove();
-    if (shouldDelayTracking) loadTrackingScripts();
-  } else if (!shouldDelayTracking) {
-    loadTrackingScripts(); // track immediately in notice-only regions
-  }
-}
-
-function loadTrackingScripts() {
-  // GA4
-  var ga = document.createElement('script');
-  ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-KJFH7FDV68';
-  ga.async = true;
-  document.head.appendChild(ga);
-  ga.onload = function () {
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KJFH7FDV68');
-  };
-
-  // Meta Pixel
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1922039791903298');
-  fbq('track', 'PageView');
-
-  const noScript = document.createElement('noscript');
-  noScript.innerHTML = '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1922039791903298&ev=PageView&noscript=1" />';
-  document.body.appendChild(noScript);
-}
-</script>
+  <br><img src="hiding-places-portrait-2025.webp" type="image/webp" style="max-width:100%;height:auto;"><br>
 
 
+  <script>
+    const restrictedCountries = [
+      'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT',
+      'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','UK','CA'
+    ];
+
+    const noticeOnlyStates = ['US-CA', 'US-VA', 'US-CO', 'US-CT', 'US-UT'];
+
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        const country = data.country_code;
+        const region = `US-${data.region_code}`;
+        const needsConsent = restrictedCountries.includes(country);
+        const needsNotice = country === 'US' && noticeOnlyStates.includes(region);
+
+        if (needsConsent) {
+          showCookieBanner(true);
+        } else if (needsNotice) {
+          showCookieBanner(false);
+        } else {
+          loadTrackingScripts();
+        }
+      })
+      .catch(() => {
+        console.warn('Geo lookup failed — tracking enabled by default');
+        loadTrackingScripts();
+      });
+
+    function showCookieBanner(shouldDelayTracking) {
+      const banner = document.createElement('div');
+      banner.id = 'cc-banner';
+      banner.innerHTML = `
+        <div>
+          This site uses cookies to analyze traffic.
+          <br>
+          <button id="cc-accept">Accept</button>
+        </div>
+      `;
+      document.body.appendChild(banner);
+
+      const accept = () => {
+        localStorage.setItem('cookieConsent', 'true');
+        document.getElementById('cc-banner').remove();
+        if (shouldDelayTracking) loadTrackingScripts();
+      };
+
+      document.getElementById('cc-accept').addEventListener('click', accept);
+
+      if (localStorage.getItem('cookieConsent') === 'true') {
+        banner.remove();
+        if (shouldDelayTracking) loadTrackingScripts();
+      } else if (!shouldDelayTracking) {
+        loadTrackingScripts();
+      }
+    }
+
+    function loadTrackingScripts() {
+      var ga = document.createElement('script');
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-KJFH7FDV68';
+      ga.async = true;
+      document.head.appendChild(ga);
+      ga.onload = function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KJFH7FDV68');
+      };
+
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1922039791903298');
+      fbq('track', 'PageView');
+
+      const noScript = document.createElement('noscript');
+      noScript.innerHTML = '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1922039791903298&ev=PageView&noscript=1" />';
+      document.body.appendChild(noScript);
+    }
+  </script>
 
 </body>
+</html>

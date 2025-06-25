@@ -7,34 +7,6 @@
   <title>Hiding Places</title>
 </head>
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1922039791903298');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1922039791903298&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJFH7FDV68"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KJFH7FDV68');
-</script>
-
 
 <body>
 <a href="https://hidingplaces.band">
@@ -51,6 +23,90 @@ src="https://www.facebook.com/tr?id=1922039791903298&ev=PageView&noscript=1"
 <br><a href="https://hidingplacesnc.bandcamp.com/"style="color:#629aa9;">Bandcamp</a></br>
 
 
+<script>
+    const restrictedCountries = [
+      'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT',
+      'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','UK','CA'
+    ];
 
+    const noticeOnlyStates = ['US-CA', 'US-VA', 'US-CO', 'US-CT', 'US-UT'];
+
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        const country = data.country_code;
+        const region = `US-${data.region_code}`;
+        const needsConsent = restrictedCountries.includes(country);
+        const needsNotice = country === 'US' && noticeOnlyStates.includes(region);
+
+        if (needsConsent) {
+          showCookieBanner(true);
+        } else if (needsNotice) {
+          showCookieBanner(false);
+        } else {
+          loadTrackingScripts();
+        }
+      })
+      .catch(() => {
+        console.warn('Geo lookup failed — tracking enabled by default');
+        loadTrackingScripts();
+      });
+
+    function showCookieBanner(shouldDelayTracking) {
+      const banner = document.createElement('div');
+      banner.id = 'cc-banner';
+      banner.innerHTML = `
+        <div>
+          This site uses cookies to analyze traffic.
+          <br>
+          <button id="cc-accept">Accept</button>
+        </div>
+      `;
+      document.body.appendChild(banner);
+
+      const accept = () => {
+        localStorage.setItem('cookieConsent', 'true');
+        document.getElementById('cc-banner').remove();
+        if (shouldDelayTracking) loadTrackingScripts();
+      };
+
+      document.getElementById('cc-accept').addEventListener('click', accept);
+
+      if (localStorage.getItem('cookieConsent') === 'true') {
+        banner.remove();
+        if (shouldDelayTracking) loadTrackingScripts();
+      } else if (!shouldDelayTracking) {
+        loadTrackingScripts();
+      }
+    }
+
+    function loadTrackingScripts() {
+      var ga = document.createElement('script');
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-KJFH7FDV68';
+      ga.async = true;
+      document.head.appendChild(ga);
+      ga.onload = function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KJFH7FDV68');
+      };
+
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1922039791903298');
+      fbq('track', 'PageView');
+
+      const noScript = document.createElement('noscript');
+      noScript.innerHTML = '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1922039791903298&ev=PageView&noscript=1" />';
+      document.body.appendChild(noScript);
+    }
+  </script>
 
 </body>
