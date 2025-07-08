@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Merchandise - Hiding Places</title>
+  <meta name="description" content="Official Hiding Places merchandise. Shop for t-shirts, hoodies, vinyl, and more band merch.">
+  <meta name="keywords" content="Hiding Places, merchandise, merch, t-shirts, hoodies, vinyl, band merch, official store">
+  <meta name="author" content="Hiding Places">
+  
+  <!-- Open Graph Meta Tags for Social Media -->
+  <meta property="og:title" content="Merchandise - Hiding Places">
+  <meta property="og:description" content="Official Hiding Places merchandise. Shop for t-shirts, hoodies, vinyl, and more band merch.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hidingplaces.band/merch/">
+  <meta property="og:image" content="https://hidingplaces.band/assets/images/hp-open-graph.webp">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../assets/images/hp-favicon.ico">
+  <link rel="apple-touch-icon" sizes="192x192" href="../assets/images/hp-touch-icon.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="top-banner">
+    <div class="top-left">
+      <a href="/" aria-label="Hiding Places Home">
+        <img src="../assets/images/hiding-places-logo-2025.webp" alt="Hiding Places Logo" type="image/webp">
+      </a>
+    </div>
+    
+    <nav class="top-right" role="navigation" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="../shows/">Shows</a>
+      <a href="../music/">Music</a>
+      <a href="../merch/">Merch</a>
+      <a href="../videos/">Videos</a>
+      <a href="https://hidingplaces.atabook.org/" target="_blank" rel="noopener">Guestbook</a>
+      <span class="contact-combo">
+        <a href="mailto:elijah@mtnlaurelrecordingco.com">Contact</a>
+        <span>(management)</span>
+      </span>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="merchandise">
+      
+      <!-- Shopify Buy Button Collection -->
+      <div id="collection-component-1750790703839"></div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../assets/js/analytics.js"></script>
+  
+  <!-- Shopify Buy Button Script -->
+  <script type="text/javascript">
+    /*<![CDATA[*/
+    (function () {
+      var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+      if (window.ShopifyBuy) {
+        if (window.ShopifyBuy.UI) {
+          ShopifyBuyInit();
+        } else {
+          loadScript();
+        }
+      } else {
+        loadScript();
+      }
+      function loadScript() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = scriptURL;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+        script.onload = ShopifyBuyInit;
+      }
+      function ShopifyBuyInit() {
+        var client = ShopifyBuy.buildClient({
+          domain: '2b2bc8-32.myshopify.com',
+          storefrontAccessToken: '1322dc1b34941fb507f8a7fa07fc7065',
+        });
+        ShopifyBuy.UI.onReady(client).then(function (ui) {
+          ui.createComponent('collection', {
+            id: '460403212528',
+            node: document.getElementById('collection-component-1750790703839'),
+            moneyFormat: '%24%7B%7Bamount%7D%7D',
+            options: {
+              "product": {
+                "styles": {
+                  "product": {
+                    "@media (min-width: 601px)": {
+                      "max-width": "calc(25% - 20px)",
+                      "margin-left": "20px",
+                      "margin-bottom": "50px",
+                      "width": "calc(25% - 20px)"
+                    }
+                  }
+                },
+                "buttonDestination": "modal",
+                "contents": {
+                  "options": false
+                },
+                "text": {
+                  "button": "View product"
+                }
+              },
+              "productSet": {
+                "styles": {
+                  "products": {
+                    "@media (min-width: 601px)": {
+                      "margin-left": "-20px"
+                    }
+                  }
+                }
+              },
+              "modalProduct": {
+                "contents": {
+                  "img": false,
+                  "imgWithCarousel": true,
+                  "button": false,
+                  "buttonWithQuantity": true
+                },
+                "styles": {
+                  "product": {
+                    "@media (min-width: 601px)": {
+                      "max-width": "100%",
+                      "margin-left": "0px",
+                      "margin-bottom": "0px"
+                    }
+                  }
+                },
+                "text": {
+                  "button": "Add to cart"
+                }
+              },
+              "option": {},
+              "cart": {
+                "text": {
+                  "total": "Subtotal",
+                  "button": "Checkout"
+                }
+              },
+              "toggle": {}
+            },
+          });
+        });
+      }
+    })();
+    /*]]>*/
+  </script>
+</body>
+</html>

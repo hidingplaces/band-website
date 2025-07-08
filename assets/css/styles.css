@@ -1,0 +1,295 @@
+/* ==========================================================================
+   Hiding Places Band Website Styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+
+a:hover {
+  cursor: pointer;
+}
+
+/* Header container */
+.top-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+/* Logo section */
+.top-left img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Navigation container */
+.top-right {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 20px;
+  flex-wrap: wrap;
+}
+
+/* Navigation links */
+.top-right a {
+  color: blue;
+  text-decoration: underline;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+/* Contact section with management label */
+.contact-combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.contact-combo a {
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.contact-combo span {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Main Content
+   ========================================================================== */
+
+/* Hero image */
+.hero-image {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  padding: 20px;
+}
+
+/* Page titles */
+h1 {
+  font-size: 2rem;
+  margin: 2rem 0 1.5rem 0;
+  text-align: center;
+  color: #333;
+}
+
+/* ==========================================================================
+   Music Page Styles
+   ========================================================================== */
+
+.music-platforms {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.platform-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.platform-links a {
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.spotify-link {
+  color: #1ED760;
+}
+
+.apple-music-link {
+  color: #FF4E6B;
+}
+
+.bandcamp-link {
+  color: #629aa9;
+}
+
+/* ==========================================================================
+   Merchandise Page Styles
+   ========================================================================== */
+
+.merchandise {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Shows Page Styles
+   ========================================================================== */
+
+.shows {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Bandsintown widget container */
+.bit-widget-initializer {
+  display: block;
+  margin-top: 2rem;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Videos Page Styles
+   ========================================================================== */
+
+.videos {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.video-item {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+}
+
+.video-item iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ==========================================================================
+   Cookie Consent Banner
+   ========================================================================== */
+
+#cc-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 280px;
+  background: white;
+  color: black;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 10px 12px;
+  border-radius: 0;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  z-index: 9999;
+}
+
+#cc-banner button {
+  background: none;
+  color: #0645AD;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 0;
+  margin-top: 6px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Tablet and smaller desktop */
+@media (max-width: 768px) {
+  .top-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .top-right {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .top-right a {
+    display: block;
+    font-size: 14px;
+  }
+
+  .contact-combo {
+    display: inline-flex;
+  }
+
+  .platform-links {
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+
+  .platform-link {
+    min-width: 180px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem 0;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 500px) {
+  #cc-banner {
+    bottom: 10px;
+    right: 10px;
+    max-width: 90%;
+    font-size: 13px;
+  }
+
+  #cc-banner button {
+    font-size: 13px;
+  }
+
+  .platform-link {
+    min-width: 160px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .music-platforms,
+  .merchandise,
+  .shows,
+  .videos {
+    padding: 15px;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+} 
