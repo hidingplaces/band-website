@@ -47,7 +47,7 @@ function showCookieBanner(shouldDelayTracking) {
   banner.id = 'cc-banner';
   banner.innerHTML = `
     <div>
-      This site uses cookies to analyze traffic.
+      This site uses cookies to analyze traffic and serve personalized ads from Meta.
       <br>
       <button id="cc-accept">Accept</button>
     </div>
