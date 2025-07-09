@@ -22,13 +22,15 @@ function initializeAnalytics() {
       const country = data.country_code;
       const region = `US-${data.region_code}`;
       const needsConsent = RESTRICTED_COUNTRIES.includes(country);
-      const needsNotice = country === 'US' && NOTICE_ONLY_STATES.includes(region);
+      const isUS = country === 'US';
+      const isNoticeOnlyState = isUS && NOTICE_ONLY_STATES.includes(region);
 
       if (needsConsent) {
         showCookieBanner(true);
-      } else if (needsNotice) {
+      } else if (isNoticeOnlyState) {
         showCookieBanner(false);
       } else {
+        // For all other US states and non-restricted countries, just load tracking scripts
         loadTrackingScripts();
       }
     })
@@ -47,7 +49,7 @@ function showCookieBanner(shouldDelayTracking) {
   banner.id = 'cc-banner';
   banner.innerHTML = `
     <div>
-      This site uses cookies to analyze traffic and serve personalized ads from Meta.
+      This site uses cookies to analyze traffic and serve personalized ads.
       <br>
       <button id="cc-accept">Accept</button>
     </div>
