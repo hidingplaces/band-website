@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Contact - Hiding Places</title>
+  <meta name="description" content="Get in touch with Hiding Places for bookings, press, and inquiries.">
+  <meta name="keywords" content="Hiding Places, contact, booking, press, inquiries">
+  <meta name="author" content="Hiding Places">
+  
+  <!-- Open Graph Meta Tags for Social Media -->
+  <meta property="og:title" content="Contact - Hiding Places">
+  <meta property="og:description" content="Contact Hiding Places for bookings, press, and general inquiries.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hidingplaces.band/contact/">
+  <meta property="og:image" content="https://hidingplaces.band/assets/images/hp-open-graph.webp">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../assets/images/hp-favicon.ico">
+  <link rel="apple-touch-icon" sizes="192x192" href="../assets/images/hp-touch-icon.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="top-banner">
+    <div class="top-left">
+      <a href="/" aria-label="Hiding Places Home">
+        <img src="../assets/images/hiding-places-logo-2025.webp" alt="Hiding Places Logo" type="image/webp">
+      </a>
+    </div>
+    
+    <nav class="top-right" role="navigation" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="../shows/" onclick="fbq('trackCustom', 'header_link_click', { link: 'Shows' })">Shows</a>
+      <a href="../music/">Music</a>
+      <a href="../merch/" onclick="fbq('trackCustom', 'header_link_click', { link: 'Merch' })">Merch</a>
+      <a href="../videos/">Videos</a>
+      <a href="https://hidingplaces.atabook.org/" target="_blank" rel="noopener">Guestbook</a>
+      <span class="contact-combo">
+        <a href="../contact/">Contact</a>
+      </span>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="content">
+      <div class="contact-align-under-home">
+        <p><a href="https://www.mtnlaurelrecordingco.com/management" target="_blank" rel="noopener">Management</a>: elijah[at]mtnlaurelrecordingco.com</p>
+        <p><a href="https://groundcontroltouring.com/artists/hiding-places" target="_blank" rel="noopener">Booking</a>: sydney[at]groundcontroltouring.com</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../assets/js/analytics.js"></script>
+  <script>
+    (function() {
+      function alignContact() {
+        var container = document.querySelector('.contact-align-under-home');
+        var homeLink = document.querySelector('.top-right a[href="/"]');
+        var referenceContainer = document.querySelector('main');
+        if (!container || !homeLink) return;
+
+        var isMobile = window.matchMedia('(max-width: 768px)').matches;
+        if (isMobile) {
+          container.style.marginLeft = '20px';
+          return;
+        }
+
+        var homeRect = homeLink.getBoundingClientRect();
+        var baseLeft = referenceContainer ? referenceContainer.getBoundingClientRect().left : 0;
+        var offset = Math.max(0, Math.round(homeRect.left - baseLeft));
+        container.style.marginLeft = offset + 'px';
+      }
+
+      window.addEventListener('load', alignContact);
+      window.addEventListener('resize', alignContact);
+    })();
+  </script>
+</body>
+</html>
+
+
