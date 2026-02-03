@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags -->
+  <link rel="canonical" href="https://hidingplaces.band/music/">
   <title>Music - Hiding Places</title>
   <meta name="description" content="Listen to Hiding Places music on Bandcamp, Spotify, Apple Music, and Tidal.">
-  <meta name="keywords" content="Hiding Places, music, Spotify, Apple Music, Bandcamp, streaming, alternative rock, indie rock, north carolina, new york, athens, ga.">
+  <meta name="keywords" content="Hiding Places, indie rock music, stream indie rock, indie rock streaming, Spotify indie rock, Apple Music indie rock, Bandcamp indie rock, discover indie rock artists, indie rock vinyl">
   <meta name="author" content="Hiding Places">
   
   <!-- Open Graph Meta Tags for Social Media -->
@@ -29,15 +30,15 @@
   <header class="top-banner">
     <div class="top-left">
       <a href="/" aria-label="Hiding Places Home">
-        <img src="../assets/images/hiding-places-logo-2025.webp" alt="Hiding Places Logo" type="image/webp">
+        <img src="../assets/images/hiding-places-logo-2025.webp" alt="Hiding Places Logo" title="Hiding Places Logo" type="image/webp">
       </a>
     </div>
     
     <nav class="top-right" role="navigation" aria-label="Main navigation">
       <a href="/">Home</a>
-      <a href="../shows/" onclick="fbq('trackCustom', 'header_link_click', { link: 'Shows' })">Shows</a>
+      <a href="../shows/" onclick="typeof fbq==='function'&&fbq('trackCustom','header_link_click',{link:'Shows'})">Shows</a>
       <a href="../music/">Music</a>
-      <a href="../merch/" onclick="fbq('trackCustom', 'header_link_click', { link: 'Merch' })">Merch</a>
+      <a href="../merch/" onclick="typeof fbq==='function'&&fbq('trackCustom','header_link_click',{link:'Merch'})">Merch</a>
       <a href="../videos/">Videos</a>
       <a href="https://hidingplaces.atabook.org/" target="_blank" rel="noopener">Guestbook</a>
       <span class="contact-combo">
@@ -48,6 +49,7 @@
 
   <!-- Main Content -->
   <main>
+    <h1 class="visually-hidden">Hiding Places Indie Rock Music - Stream on Spotify, Apple Music, Bandcamp</h1>
     <section class="music-platforms">
       
       <div class="platform-links">
@@ -55,25 +57,25 @@
            target="_blank" 
            rel="noopener"
            class="spotify-link"
-           onclick="fbq('trackCustom', 'music_platform_click', { platform: 'Spotify' });">Spotify</a>
+           onclick="typeof fbq==='function'&&fbq('trackCustom','music_platform_click',{platform:'Spotify'})">Spotify</a>
 
         <a href="https://music.apple.com/us/artist/hiding-places/1576075748" 
            target="_blank" 
            rel="noopener"
            class="apple-music-link"
-           onclick="fbq('trackCustom', 'music_platform_click', { platform: 'Apple Music' });">Apple Music</a>
+           onclick="typeof fbq==='function'&&fbq('trackCustom','music_platform_click',{platform:'Apple Music'})">Apple Music</a>
 
         <a href="https://hidingplacesnc.bandcamp.com/" 
            target="_blank" 
            rel="noopener"
            class="bandcamp-link"
-           onclick="fbq('trackCustom', 'music_platform_click', { platform: 'Bandcamp' });">Bandcamp</a>
+           onclick="typeof fbq==='function'&&fbq('trackCustom','music_platform_click',{platform:'Bandcamp'})">Bandcamp</a>
 
         <a href="https://tidal.com/browse/artist/3849944?u" 
            target="_blank" 
            rel="noopener"
            class="tidal-link"
-           onclick="fbq('trackCustom', 'music_platform_click', { platform: 'Tidal' });">Tidal</a>
+           onclick="typeof fbq==='function'&&fbq('trackCustom','music_platform_click',{platform:'Tidal'})">Tidal</a>
       </div>
     </section>
   </main>

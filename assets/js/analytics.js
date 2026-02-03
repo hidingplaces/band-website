@@ -35,7 +35,6 @@ function initializeAnalytics() {
       }
     })
     .catch(() => {
-      console.warn('Geo lookup failed — tracking enabled by default');
       loadTrackingScripts();
     });
 }
@@ -108,5 +107,9 @@ function loadTrackingScripts() {
   document.body.appendChild(noScript);
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeAnalytics); 
+// Initialize after page load (avoids competing with LCP image on homepage)
+if (document.readyState === 'complete') {
+  initializeAnalytics();
+} else {
+  window.addEventListener('load', initializeAnalytics);
+} 

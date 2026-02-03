@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags -->
+  <link rel="canonical" href="https://hidingplaces.band/">
   <title>Hiding Places - Official Band Website</title>
   <meta name="description" content="Official website for Hiding Places.">
-  <meta name="keywords" content="Hiding Places, band, music, shows, merch, alternative rock, indie rock, north carolina, asheville, new york, athens, ga.">
+  <meta name="keywords" content="Hiding Places, indie rock band, indie rock music, indie rock artists, indie rock musicians, indie rock music videos, indie rock concerts, indie rock festivals, alternative rock, north carolina, asheville, new york, athens ga, streaming indie rock, discover indie rock">
   <meta name="author" content="Hiding Places">
   
   <!-- Open Graph Meta Tags for Social Media -->
@@ -17,27 +18,49 @@
   <meta property="og:url" content="https://hidingplaces.band">
   <meta property="og:image" content="https://hidingplaces.band/assets/images/hiding-places-portrait-2025.webp">
   
+  <!-- Preload LCP image (hero) for faster paint - responsive -->
+  <link rel="preload" as="image" href="assets/images/hiding-places-portrait-2025.webp" imagesrcset="assets/images/hiding-places-portrait-2025-mobile.jpg 600w, assets/images/hiding-places-portrait-2025.webp 918w" imagesizes="(max-width: 768px) 80vw, 734px">
+  
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/images/hp-favicon.ico">
   <link rel="apple-touch-icon" sizes="192x192" href="assets/images/hp-touch-icon.png">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Structured Data for SEO-->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Hiding Places",
+    "url": "https://hidingplaces.band",
+    "genre": ["Indie Rock", "Alternative Rock"],
+    "description": "Hiding Places is an indie rock band with alt-country and emo influences. Stream our music on Spotify, Apple Music, and Bandcamp. Watch official indie rock music videos. Find upcoming indie rock concerts and festivals.",
+    "image": "https://hidingplaces.band/assets/images/hiding-places-portrait-2025.webp",
+    "sameAs": [
+      "https://open.spotify.com/artist/2BljwD6LPxBQow3klxFIIJ",
+      "https://music.apple.com/us/artist/hiding-places/1576075748",
+      "https://hidingplacesnc.bandcamp.com/",
+      "https://tidal.com/browse/artist/3849944"
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Header -->
   <header class="top-banner">
     <div class="top-left">
       <a href="/" aria-label="Hiding Places Home">
-        <img src="assets/images/hiding-places-logo-2025.webp" alt="Hiding Places Logo" type="image/webp">
+        <img src="assets/images/hiding-places-logo-2025.webp" alt="Hiding Places Logo" title="Hiding Places Logo" type="image/webp">
       </a>
     </div>
     
     <nav class="top-right" role="navigation" aria-label="Main navigation">
       <a href="/">Home</a>
-      <a href="shows/" onclick="fbq('trackCustom', 'header_link_click', { link: 'Shows' })">Shows</a>
+      <a href="shows/" onclick="typeof fbq==='function'&&fbq('trackCustom','header_link_click',{link:'Shows'})">Shows</a>
       <a href="music/">Music</a>
-      <a href="merch/" onclick="fbq('trackCustom', 'header_link_click', { link: 'Merch' })">Merch</a>
+      <a href="merch/" onclick="typeof fbq==='function'&&fbq('trackCustom','header_link_click',{link:'Merch'})">Merch</a>
       <a href="videos/">Videos</a>
       <a href="https://hidingplaces.atabook.org/" target="_blank" rel="noopener">Guestbook</a>
       <span class="contact-combo">
@@ -49,18 +72,25 @@
 
   <!-- Main Content -->
   <main>
+    <h1 class="visually-hidden">Hiding Places - Indie Rock Band Official Website</h1>
     <section class="hero">
       <img 
         src="assets/images/hiding-places-portrait-2025.webp" 
-        alt="Hiding Places Band Portrait" 
+        srcset="assets/images/hiding-places-portrait-2025-mobile.jpg 600w, assets/images/hiding-places-portrait-2025.webp 918w"
+        sizes="(max-width: 768px) 80vw, 734px"
+        alt="Hiding Places indie rock band portrait" 
+        title="Hiding Places indie rock band"
+        width="918"
+        height="830"
         class="hero-image"
-        type="image/webp"
+        fetchpriority="high"
+        decoding="async"
       >
     </section>
   </main>
 
-  <!-- Scripts -->
-  <script src="assets/js/analytics.js"></script>
+  <!-- Scripts (deferred to avoid competing with LCP image) -->
+  <script src="assets/js/analytics.js" defer></script>
   
 </body>
 </html>
