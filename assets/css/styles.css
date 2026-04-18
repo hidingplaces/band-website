@@ -40,6 +40,59 @@ a:active {
   }
 
 
+
+/* page specific colors */
+    /* music page */
+        /* links */
+
+            body.music-page a:link {
+                color: #9e6a55;
+                background-color: transparent;
+                text-decoration: none;
+            }
+
+            body.music-page a:visited {
+            color: #9e6a55;           /* example: different from default */
+            text-decoration: none;
+            }
+
+            body.music-page a:hover {
+                color: #9e6a55;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+            body.music-page a:active {
+            color: #9e6a55;
+            text-decoration: underline;
+            }
+
+            body.music-page h1,
+            body.music-page h2,
+            body.music-page h3 {
+                color: #9e6a55;
+            }
+        /* headers */
+            
+            body.music-page h1 {
+                color: #b3b09f;
+            }
+
+            body.music-page h2 {
+                color: #b3b09f;
+            }
+
+            body.music-page h3 {
+                color: #b3b09f;
+            }
+
+            body.music-page h4 {
+                color: #b3b09f;
+            }
+            
+
+
+
+
 /* header container*/
 .header-logo {
     display: flex;
