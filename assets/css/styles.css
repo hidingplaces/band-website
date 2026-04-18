@@ -89,6 +89,52 @@ a:active {
                 color: #b3b09f;
             }
             
+    /* games page */
+        /* links */
+
+            body.games-page a:link {
+                color: #9e6a55;
+                background-color: transparent;
+                text-decoration: none;
+            }
+
+            body.games-page a:visited {
+            color: #9e6a55;           /* example: different from default */
+            text-decoration: none;
+            }
+
+            body.games-page a:hover {
+                color: #9e6a55;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+            body.games-page a:active {
+            color: #9e6a55;
+            text-decoration: underline;
+            }
+
+            body.games-page h1,
+            body.games-page h2,
+            body.games-page h3 {
+                color: #9e6a55;
+            }
+        /* headers */
+            
+            body.games-page h1 {
+                color: #b3b09f;
+            }
+
+            body.games-page h2 {
+                color: #b3b09f;
+            }
+
+            body.games-page h3 {
+                color: #b3b09f;
+            }
+
+            body.games-page h4 {
+                color: #b3b09f;
+            }
 
 
 
